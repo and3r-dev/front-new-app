@@ -1,0 +1,64 @@
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-4 offset-md-4 mt-5">
+      <h3 class="text-center">Processos</h3>
+    </div>
+  </div>
+  <div class="col-md-10 offset-md-1">
+    <button class="btn btn-primary float-end" (click)="openModalCadastrar()">Cadastrar</button>
+  </div>
+  <div class="col-md-10 offset-md-1 mt-2">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">NPU</th>
+          <th scope="col">Município</th>
+          <th scope="col">UF</th>
+          <th scope="col">Ação</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of process">
+          <th scope="row">{{ item.npu }}</th>
+          <td>{{ item.municipio }}</td>
+          <td>{{ item.uf }}</td>
+          <td>
+            <button class="btn btn-primary" (click)="openVisualizar(item.id)"><i class="fa-solid fa-eye"></i></button>
+            <button class="btn btn-success" (click)="openEditar(item)"><i class="fas fa-edit"></i></button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="list">
+      <div class="col-md-10 offset-md-1">
+        <!-- <a class="btn btn-warning" [routerLink]="[pages.previous]"><i class="fa fa-arrow-left" aria-hidden="true"></i></a>
+        <a class="btn btn-danger" [routerLink]="[pages.next]"><i class="fa fa-arrow-right" aria-hidden="true"></i></a> -->
+        <button class="btn btn-danger" (click)="changePage('next')"><i class="fa fa-arrow-right" aria-hidden="true"></i></button>
+        <button class="btn btn-warning" (click)="changePage('previous')"><i class="fa fa-arrow-left" aria-hidden="true"></i></button>
+      </div>
+      <!-- <ul>
+        <li *ngFor="let item of process" >{{ item }}</li>
+      </ul> -->
+
+      <!-- <pagination-controls (pageChange)="let page of pages; p = $event"></pagination-controls> -->
+
+      <!-- <pagination-controls  id="some_id"
+                            (pageChange)="pageChanged($event)"
+                            (pageBoundsCorrection)="pageChanged($event)"
+                            maxSize="9"
+                            directionLinks="true"
+                            autoHide="true"
+                            responsive="true"
+                            previousLabel="Previous"
+                            nextLabel="Next"
+                            screenReaderPaginationLabel="Pagination"
+                            screenReaderPageLabel="page"
+                            screenReaderCurrentLabel="You're on page">
+      </pagination-controls> -->
+
+  </div>
+  </div>
+</div>
+
+<app-cadastrar [cadastro]="cadastro" [processEdit]="processEdit" (modalClose)="onModalClose()"></app-cadastrar>

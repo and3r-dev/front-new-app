@@ -1,0 +1,64 @@
+<ng-template #template>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Cadastrar</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="closeModal()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form novalidade [formGroup]="processForm" (ngSubmit)="cadastrar()">
+      <div class="row">
+        <div class="col-md-4">
+          <label for="">NPU</label>
+          <input
+            type="text"
+            class="form-control"
+            formControlName="npu" name="npu" mask="0000000-00.0000.0.00.0000 ">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-10">
+          <label for="">Municípios</label>
+          <input
+          (keyup)="searchMunicipio($event)"
+            type="text" class="form-control"
+            formControlName="municipio" name="municipio"
+            id="municipio">
+
+            <div class="row" id="listMunicipios" *ngIf="openListMunicipios">
+              <div class="col-md-10">
+                <ul class="list-group">
+                  <li (click)="selectedMunicipio(municipio.id)" class="list-group-item" *ngFor="let municipio of resultMunicipios">{{municipio.nome}}</li>
+                </ul>
+              </div>
+            </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-10">
+          <label for="">UF</label>
+          <input type="text" class="form-control" formControlName="uf" name="uf">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <input
+              (change)="selectImage($event)"
+              placeholder="Insira uma imagem"
+              type="file"
+              name="image"
+              class="form-control"
+              formControlName="upload_documento">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-10">
+          <input type="submit" value="Salvar" class="btn btn-primary float-end mt-3">
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="closeModal()">Close</button>
+  </div>
+</ng-template>
