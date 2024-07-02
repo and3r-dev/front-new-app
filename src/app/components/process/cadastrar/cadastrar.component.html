@@ -8,7 +8,7 @@
   <div class="modal-body">
     <form novalidade [formGroup]="processForm" (ngSubmit)="cadastrar()">
       <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-10 offset-1 mt-2">
           <label for="">NPU</label>
           <input
             type="text"
@@ -17,7 +17,7 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-md-10">
+        <div class="col-md-10 offset-1 mt-2">
           <label for="">Municípios</label>
           <input
           (keyup)="searchMunicipio($event)"
@@ -35,13 +35,13 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-md-10">
+        <div class="col-md-10 offset-1 mt-2">
           <label for="">UF</label>
           <input type="text" class="form-control" formControlName="uf" name="uf">
         </div>
       </div>
       <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-10 offset-1 mt-2">
           <input
               (change)="selectImage($event)"
               placeholder="Insira uma imagem"
@@ -52,13 +52,10 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-md-10">
+        <div class="col-md-10 offset-1 mt-3">
           <input type="submit" value="Salvar" class="btn btn-primary float-end mt-3">
         </div>
       </div>
     </form>
-  </div>
-  <div class="modal-footer">
-    <button type="button" class="btn btn-secondary" (click)="closeModal()">Close</button>
   </div>
 </ng-template>

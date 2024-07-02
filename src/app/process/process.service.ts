@@ -36,4 +36,8 @@ export class ProcessService {
     return this.http.get(`${baseUrl}processo/${process_id}`);
   }
 
+  deleteProcess(id: number): Observable<any> {
+    return this.http.delete(`${baseUrl}processo/deletar/` + id);
+  }
+
 }

@@ -5,7 +5,7 @@ import { Process } from '../../../models/process';
 import { ProcessService } from '../../../process/process.service';
 import { ToastrService } from 'ngx-toastr';
 
-declare var $: any;
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-cadastrar',
@@ -60,7 +60,6 @@ export class CadastrarComponent implements OnChanges, OnInit {
       this.openModal();
     }
     if (changes['processEdit'] && this.cadastro) {
-      // console.log(this.process_id);
       this.processForm.get('id')?.setValue(this.processEdit.id);
       this.processForm.get('npu')?.setValue(this.processEdit.npu);
       this.processForm.get('municipio')?.setValue(this.processEdit.municipio);
@@ -93,26 +92,42 @@ export class CadastrarComponent implements OnChanges, OnInit {
       formData.append('uf', this.processForm.get('uf')?.value);
       formData.append('data_cadastro', this.dateNow);
 
-      if (this.processForm != null) {
+      if (this.processEdit != null) {
         formData.append('id', this.processForm.get('id')?.value);
-        this.processService.putProcess(formData).subscribe({
-          next: () => this.toastr.success('Atualizado com sucesso!'),
-          error: (error) => {
-            console.log('Error', error);
-            this.toastr.error('O processo não foi atualizado.');
-          },
-          complete: () => console.log('Processo atualizado.')
+        this.processService.putProcess(formData).subscribe((res) => {
+          if(res) {
+            Swal.fire({
+              title: "Processo",
+              text: 'Atualizado com sucesso!',
+              icon: "success",
+            });
+          } else {
+            Swal.fire({
+              title: "Processo",
+              text: "Processo não foi atualizado.",
+              icon: "error",
+            });
+          }
         });
       }
 
-      this.processService.postProcess(formData).subscribe({
-        next: () => this.toastr.success('Salvo com sucesso!'),
-        error: (error) => {
-          console.log('Error', error);
-          this.toastr.error('O processo não foi salvo.');
-        },
-        complete: () => console.log('Processo salvo.')
+      this.processService.postProcess(formData).subscribe((res) => {
+        if(res) {
+          Swal.fire({
+            title: "Processo",
+            text: "Processo salvo com sucesso",
+            icon: "success",
+          });
+        } else {
+          Swal.fire({
+            title: "Processo",
+            text: "Processo não foi salvo.",
+            icon: "error",
+          });
+        }
       });
+
+      this.closeModal();
     } else {
       this.toastr.error('Você precisa preencher os campos para poder salvar.');
     }

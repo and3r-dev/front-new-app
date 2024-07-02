@@ -3,6 +3,7 @@ import { BrowserModule, provideClientHydration } from '@angular/platform-browser
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -41,7 +42,8 @@ const maskConfig: () => Partial<IConfig> = () => {
     NgxMaskDirective,
     NgxMaskPipe,
     ToastrModule.forRoot(),
-    NgxPaginationModule
+    NgxPaginationModule,
+    SweetAlert2Module.forRoot()
   ],
   providers: [
     provideClientHydration(),

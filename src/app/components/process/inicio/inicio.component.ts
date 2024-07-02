@@ -4,6 +4,8 @@ import { ProcessService } from '../../../process/process.service';
 import { Router } from '@angular/router';
 import { HttpParams } from '@angular/common/http';
 
+import Swal from 'sweetalert2';
+
 @Component({
   selector: 'app-inicio',
   templateUrl: './inicio.component.html',
@@ -20,7 +22,7 @@ export class InicioComponent implements OnInit{
 
   constructor(
     private processService: ProcessService,
-    private router: Router
+    private router: Router,
   ) {
   }
 
@@ -74,6 +76,29 @@ export class InicioComponent implements OnInit{
     }
     let data = numberPage.substring(numberPage.indexOf('=') + 1, numberPage.indexOf('=') + 2);
     this.getProcessPerPage(data);
+  }
+
+  delete(process_id: number) {
+    this.processService.deleteProcess(process_id).subscribe((res) => {
+      if(res) {
+        Swal.fire({
+          title: "Processo",
+          text: 'Deletado com sucesso!',
+          icon: "success",
+        });
+        this.process.forEach((process, index) => {
+          if (process.id == process_id) {
+            this.process.splice(index, 1);
+          }
+        })
+      } else {
+        Swal.fire({
+          title: "Processo",
+          text: "Processo não foi deletado.",
+          icon: "error",
+        });
+      }
+    });
   }
 
 }

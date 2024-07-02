@@ -26,37 +26,16 @@
           <td>
             <button class="btn btn-primary" (click)="openVisualizar(item.id)"><i class="fa-solid fa-eye"></i></button>
             <button class="btn btn-success" (click)="openEditar(item)"><i class="fas fa-edit"></i></button>
+            <button class="btn btn-danger" (click)="delete(item.id)"><i class="fa-solid fa-trash"></i></button>
           </td>
         </tr>
       </tbody>
     </table>
     <div class="list">
-      <div class="col-md-10 offset-md-1">
-        <!-- <a class="btn btn-warning" [routerLink]="[pages.previous]"><i class="fa fa-arrow-left" aria-hidden="true"></i></a>
-        <a class="btn btn-danger" [routerLink]="[pages.next]"><i class="fa fa-arrow-right" aria-hidden="true"></i></a> -->
+      <div class="col-md-10 offset-md-1" align="center">
+        <button class="btn btn-warning me-2" (click)="changePage('previous')"><i class="fa fa-arrow-left" aria-hidden="true"></i></button>
         <button class="btn btn-danger" (click)="changePage('next')"><i class="fa fa-arrow-right" aria-hidden="true"></i></button>
-        <button class="btn btn-warning" (click)="changePage('previous')"><i class="fa fa-arrow-left" aria-hidden="true"></i></button>
       </div>
-      <!-- <ul>
-        <li *ngFor="let item of process" >{{ item }}</li>
-      </ul> -->
-
-      <!-- <pagination-controls (pageChange)="let page of pages; p = $event"></pagination-controls> -->
-
-      <!-- <pagination-controls  id="some_id"
-                            (pageChange)="pageChanged($event)"
-                            (pageBoundsCorrection)="pageChanged($event)"
-                            maxSize="9"
-                            directionLinks="true"
-                            autoHide="true"
-                            responsive="true"
-                            previousLabel="Previous"
-                            nextLabel="Next"
-                            screenReaderPaginationLabel="Pagination"
-                            screenReaderPageLabel="page"
-                            screenReaderCurrentLabel="You're on page">
-      </pagination-controls> -->
-
   </div>
   </div>
 </div>
